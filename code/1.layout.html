@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        section {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 1. float布局解决方案 -->
+    <section>
+        <style>
+            .wrapper {
+                height: 300px;
+            }
+            .boxA {
+                background: red;
+                height: 300px;
+                width:300px;
+                
+                float:left; /*①*/
+            }
+            .boxB {
+                background: blueviolet;
+                height: 300px;
+                
+                margin-left:300px; /*③*/
+                margin-right: 300px; 
+            }
+            .boxC {
+                background: green;
+                height: 300px;
+                width:300px;
+            
+                float: right; /*②*/
+            }
+        </style>
+        <div class="wrapper">
+            <div class="boxA">
+                A浮动
+            </div>
+            <!-- DOM写时，需要注意：所有浮动元素写在非浮动元素前面。才能实现在一行展示 -->
+            <div class="boxC">
+                C浮动
+            </div>
+            <div class="boxB">
+                B自适应
+            </div>
+        </div>
+    </section>
+
+
+    <!--  2.position布局解决方案-->
+    <section>
+        <style>
+            .wrapper02 {
+                height: 300px;
+
+                position: relative;  /*①*/
+            }
+            .boxD {
+                background: red;
+                height: 300px;
+                width:300px;
+                
+                position:absolute; /*②*/
+                left: 0;
+                top: 0;
+            }
+            .boxE {
+                background: green;
+                height: 300px;
+                width:300px;
+                
+                position:absolute; /*③*/
+                right: 0;
+                top: 0;
+            }
+            .boxF {
+                background: blueviolet;
+                height: 300px;
+
+                position: absolute; /*③*/
+                left: 300px;
+                right: 300px;
+            }
+        </style>
+        <div class="wrapper02">
+            <!-- 注意原则：父相对，子绝对 -->
+            <div class="boxD">
+                D定位
+            </div>
+            <div class="boxF">
+                F自适应
+            </div>
+            <div class="boxE">
+                E定位
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 3. flex布局解决方案 -->
+    <section>
+        <style>
+            .wrapper03 {
+                height: 300px;
+
+                display: flex;  /*①*/
+            }
+            .boxG {
+                background: red;
+                height: 300px;
+                width:300px;
+                
+                /* flex: 0 0 300px;*/ /* ③ flex-grow:0 | flex-shrink:0 | flex-basis:auto */
+                /* 让左边的项目：不放大、不缩小、占据主轴的空间尺寸为300px */
+                flex: none;
+            }
+            .boxH {
+                background: blueviolet;
+                height: 300px;
+
+                /* flex: 1 1 auto;*/ /* ② flex-grow:1 | flex-shrink:1 | flex-basis:auto */ 
+                /* 让中间的项目：放大、缩小、该项目占据的主轴空间size为auto */
+                flex: auto;
+
+                /* flex: 1; 或者左右都不写任何flex属性，只在中间的项目添加flex:1即可实现自适应 */
+            }
+            .boxI {
+                background: green;
+                height: 300px;
+                width:300px;
+
+                /*flex: 0 0 300px;*/ /* ③ flex-grow:0 | flex-shrink:0 | flex-basis:auto */
+                /* 让右边的项目：不放大、不缩小、占据主轴的空间尺寸为300px */
+                flex: none;
+            }
+        </style>
+        <div class="wrapper03">
+            <!-- 父 display: flex -->
+            <!-- 左右flex: none，中间flex:auto -->
+
+            <!-- 或者直接在中间项目写上 flex:1，且左右项目不用写flex属性 -->
+            <div class="boxG">
+                G flex:none
+            </div>
+            <div class="boxH">
+                H flex:auto
+            </div>
+            <div class="boxI">
+                I flex:none
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- 4.inline-block + js动态控制宽度解决方案 -->
+    <section>
+        <style>
+            .wrapper04 {
+                height: 300px;
+                width: 100%;
+
+                font-size:0; /*解决inline-block子元素之间有间隙*/
+            }
+            .wrapper04 div {
+                display: inline-block;
+                font-size: 16px; /*然后单独给子元素设置font-size*/
+            }
+            .boxJ {
+                background: red;
+                height: 300px;
+                width:300px;
+            }
+            .boxK {
+                background: blueviolet;
+                height: 300px;
+            }
+            .boxL {
+                background: green;
+                height: 300px;
+                width:300px;
+
+            }
+        </style>
+        <div class="wrapper04">
+            <div class="boxJ">
+                J
+            </div>
+            <div class="boxK">
+                K--> inline-block + js动态控制
+            </div>
+            <div class="boxL">
+                L
+            </div>
+        </div>
+        <script>
+            // 动态设置K的宽度
+            function setWidth() {
+                let wrapper04 = document.getElementsByClassName('wrapper04')[0]  // 获取容器
+                let boxJ = document.getElementsByClassName('boxJ')[0]
+                let boxK = document.getElementsByClassName('boxK')[0]
+                let boxL = document.getElementsByClassName('boxL')[0]
+
+                let wraper_w = wrapper04.offsetWidth // 容器实际宽度
+                let boxJ_w = boxJ.offsetWidth  // J-宽度
+                let boxL_w = boxL.offsetWidth  // L-宽度
+
+                // console.log(wraper_w)
+                boxK.style.width = wraper_w - boxJ_w - boxL_w + 'px';
+            }
+            ['resize', 'load'].forEach(function (item, index) {
+                window.addEventListener(item, setWidth);
+            })
+        </script>
+    </section>
+
+    <!-- 5. table布局解决方案 -->
+    <section>
+        <style>
+            .wrapper05 {
+                height: 300px;
+                width: 100%;
+                display: table;
+            }
+        
+            .wrapper05 div {
+                display: table-cell;
+            }
+        
+            .boxM {
+                background: red;
+                height: 300px;
+                width: 300px;
+            }
+        
+            .boxN {
+                background: blueviolet;
+                height: 300px;
+            }
+        
+            .boxO {
+                background: green;
+                height: 300px;
+                width: 300px;
+        
+            }
+        </style>
+        <div class="wrapper05">
+            <div class="boxM">
+                M
+            </div>
+            <div class="boxN">
+                N---父display:table，子display:table-cell
+            </div>
+            <div class="boxO">
+                O
+            </div>
+        </div>
+    </section>
+    
+
+</body>
+</html>
