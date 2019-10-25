@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>layout</title>
     <style>
         body {
             margin: 0;
@@ -18,27 +18,24 @@
 <body>
     <!-- 1. float布局解决方案 -->
     <section>
-        <style>
-            .wrapper {
-                height: 300px;
+        <style>         
+            .wrapper div {
+                height: 100px;
             }
             .boxA {
                 background: red;
-                height: 300px;
                 width:300px;
                 
                 float:left; /*①*/
             }
             .boxB {
                 background: blueviolet;
-                height: 300px;
                 
                 margin-left:300px; /*③*/
                 margin-right: 300px; 
             }
             .boxC {
                 background: green;
-                height: 300px;
                 width:300px;
             
                 float: right; /*②*/
@@ -53,7 +50,7 @@
                 C浮动
             </div>
             <div class="boxB">
-                B自适应
+                B浮动布局解决方案
             </div>
         </div>
     </section>
@@ -63,13 +60,13 @@
     <section>
         <style>
             .wrapper02 {
-                height: 300px;
-
                 position: relative;  /*①*/
+            }
+            .wrapper02 div {
+                height: 100px;
             }
             .boxD {
                 background: red;
-                height: 300px;
                 width:300px;
                 
                 position:absolute; /*②*/
@@ -78,7 +75,6 @@
             }
             .boxE {
                 background: green;
-                height: 300px;
                 width:300px;
                 
                 position:absolute; /*③*/
@@ -87,7 +83,6 @@
             }
             .boxF {
                 background: blueviolet;
-                height: 300px;
 
                 position: absolute; /*③*/
                 left: 300px;
@@ -113,13 +108,13 @@
     <section>
         <style>
             .wrapper03 {
-                height: 300px;
-
                 display: flex;  /*①*/
+            }
+            .wrapper03 div {
+                height: 100px;
             }
             .boxG {
                 background: red;
-                height: 300px;
                 width:300px;
                 
                 /* flex: 0 0 300px;*/ /* ③ flex-grow:0 | flex-shrink:0 | flex-basis:auto */
@@ -128,7 +123,6 @@
             }
             .boxH {
                 background: blueviolet;
-                height: 300px;
 
                 /* flex: 1 1 auto;*/ /* ② flex-grow:1 | flex-shrink:1 | flex-basis:auto */ 
                 /* 让中间的项目：放大、缩小、该项目占据的主轴空间size为auto */
@@ -138,7 +132,6 @@
             }
             .boxI {
                 background: green;
-                height: 300px;
                 width:300px;
 
                 /*flex: 0 0 300px;*/ /* ③ flex-grow:0 | flex-shrink:0 | flex-basis:auto */
@@ -164,11 +157,11 @@
     </section>
     
 
-    <!-- 4.inline-block + js动态控制宽度解决方案 -->
+    <!-- 4.inline-block + js动态控制宽度解决方案 有bug -->
     <section>
         <style>
             .wrapper04 {
-                height: 300px;
+                height: 100px;
                 width: 100%;
 
                 font-size:0; /*解决inline-block子元素之间有间隙*/
@@ -179,16 +172,16 @@
             }
             .boxJ {
                 background: red;
-                height: 300px;
+                height: 100px;
                 width:300px;
             }
             .boxK {
                 background: blueviolet;
-                height: 300px;
+                height: 100px;
             }
             .boxL {
                 background: green;
-                height: 300px;
+                height: 100px;
                 width:300px;
 
             }
@@ -229,29 +222,26 @@
     <section>
         <style>
             .wrapper05 {
-                height: 300px;
                 width: 100%;
                 display: table;
             }
         
             .wrapper05 div {
                 display: table-cell;
+                height: 100px;
             }
         
             .boxM {
                 background: red;
-                height: 300px;
                 width: 300px;
             }
         
             .boxN {
                 background: blueviolet;
-                height: 300px;
             }
         
             .boxO {
                 background: green;
-                height: 300px;
                 width: 300px;
         
             }
@@ -269,6 +259,45 @@
         </div>
     </section>
     
+    <!-- 6. grid布局解决方案 -->
+    <section>
+        <style>
+            .wrapper06 {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 300px auto 300px;
+            }
+            .wrapper06 div {
+                height: 100px;
+            }
+            .boxP {
+                background: red;
+                width: 300px;
+            }
+    
+            .boxQ {
+                background: blueviolet;
+            }
+    
+            .boxR {
+                background: green;
+                width: 300px;
+    
+            }
+        </style>
+        <div class="wrapper06">
+            <div class="boxP">
+                P
+            </div>
+            <div class="boxQ">
+                Q
+            </div>
+            <div class="boxR">
+                R
+            </div>
+        </div>
+    </section>
+
 
 </body>
 </html>
