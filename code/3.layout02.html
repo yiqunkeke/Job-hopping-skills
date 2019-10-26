@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>layout-上下高度固定，中间自适应</title>
+    <style>
+        html * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 1. fixed布局解决方案 -->
+    <!-- 上下fixed，中间margin来解决 -->
+    <!-- <section>
+        <style>
+            .container {
+                position: relative;
+            }
+            header {
+                height: 30px;
+                background: red;
+
+                position: fixed;
+                left: 0;
+                right: 0;
+                top: 0;
+            }
+            .context {
+                background: yellow;
+
+                margin: 30px auto;
+            }
+            footer {
+                height: 30px;
+                background: blue;
+
+                position: fixed;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            }
+        </style>
+        <article class="container">
+            <header>
+                header
+            </header>
+            <p class="context">
+                start
+                <br/>
+                content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 content
+                <br/>
+                 end
+            </p>
+            <footer>
+                footer
+            </footer>
+        </article>
+    </section> -->
+   
+    <!-- 2. absolute布局解决方案 -->
+    <!-- 上中下都用absolute -->
+    <section>
+        <style>
+            .container {
+                position: relative;
+            }
+            header {
+                height: 30px;
+                background: red;
+    
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+            }
+            .context {
+                background: yellow;
+
+                position: absolute;
+                top: 30px;
+                bottom: 30px;
+                left: 0;
+                right: 0;
+            }
+            footer {
+                height: 30px;
+                background: blue;
+    
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            }
+        </style>
+        <article class="container">
+            <header>
+                header
+            </header>
+            <p class="context">
+                start
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> content
+                <br/> end
+            </p>
+            <footer>
+                footer
+            </footer>
+        </article>
+    </section>
+</body>
+</html>
