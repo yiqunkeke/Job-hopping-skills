@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BFC</title>
+    <style>
+        html * {
+            margin:0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- BFC 垂直方向边距重叠 -->
+    <section id="margin">
+        <style>
+            #margin {
+                background: red;
+                overflow: hidden; 
+            }
+            #margin>p{
+                margin: 5px auto 25px;
+                background: pink;
+            }
+            /*
+             父级元素创建了BFC,子元素垂直方向上边距重叠
+             原则：取最大值
+             */
+        </style>
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+    </section>
+
+    <br/>
+
+    <!-- BFC不与float重叠 -->
+    <section id="layout">
+        <style>
+            #layout {
+                background: red;
+            }
+            #layout .left {
+                width: 100px;
+                height: 100px;
+                background: yellow;
+                float:left;
+            }
+            #layout .right {
+                height: 110px;
+                background: gray;
+                /* float: left; */
+                overflow: hidden;
+            }
+            /* 给右侧元素创建BFC */
+        </style>
+        <div class="left">我是浮动元素</div>
+        <div class="right">我是兄弟元素</div>
+    </section>
+
+
+    <br/>
+
+    <!-- BFC的子元素即使是float，也会参与高度计算 -->
+    <section id="float">
+        <style>
+            #float {
+                background: red;
+                overflow: auto;
+            }
+            #float .float {
+                float:left;
+                height: 100px;
+                width: 100px;
+                background: yellow;
+            }
+            /* 子元素为浮动元素时，父元素的高度计算没有将子元素的高度包括进来 */
+            /* 当我们把父元素设置为BFC时，父元素的高度计算就会把浮动子元素的高度包括进来 */
+            /* 这就是BFC的另一个应用：清除浮动 */
+            /* 清除浮动的原理：BFC元素在计算高度的时候，它会考虑内部子元素为float的元素 */
+            /* 换句话说，子元素为float，也不影响BFC父元素的高度计算，它的高度也会被参与到父元素高度的计算上 */
+        </style>
+        <div class="float">
+            我是浮动元素
+        </div>
+    </section>
+
+    <br/>
+    
+    <!-- test -->
+    <section id="sec">
+        <style>
+            #sec {
+                background: red;
+            }
+            .child {
+                height: 100px;
+                margin-top: 10px;
+                background: yellow;
+            }
+        </style>
+        <article class="child">
+
+        </article>
+    </section>
+    
+</body>
+</html>
