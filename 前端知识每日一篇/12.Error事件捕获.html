@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>error事件捕获及错误上报</title>
+    <script>
+        // error事件捕获----资源加载错误
+        window.addEventListener("error", function(e){
+            console.log("捕获", e)
+        }, true)
+
+        </script>
+</head>
+<body>
+    
+    <script src="//baidu.com/test.js"></script>
+
+    <script>
+        // 上报错误
+        (new Image()).src = "http://baidu.com/testjk?r=shsoh"
+    </script>
+</body>
+</html>
